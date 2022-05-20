@@ -65,6 +65,11 @@ public class Article {
     public ObjectId getId() {
         return id;
     }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+    
     //#endregion
 
     //#region [ Add to list ]

@@ -1,5 +1,7 @@
 package com.example.dollop.manager;
 
+import static com.example.dollop.gateway.ArticleGateway.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import static com.example.dollop.gateway.ArticleGateway.*;
 
 @RestController
 @RequestMapping("/articles")
@@ -43,7 +43,7 @@ public class ArticleManager {
         try {
             id = new ObjectId(paramId);
             
-            article = getApprovalById(id);
+            article = getArticleById(id);
 
             return new ResponseEntity<>(article,HttpStatus.OK);
         } 
@@ -65,7 +65,7 @@ public class ArticleManager {
             //     return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
             
             // computeApproval(article);
-            saveApproval(article);
+            saveArticle(article);
             
             return new ResponseEntity<>(article,HttpStatus.CREATED);
         }
@@ -87,13 +87,13 @@ public class ArticleManager {
         try {
             id = new ObjectId(paramId);
 
-            if (!ExistApproval(id))
+            if (!ExistArticle(id))
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 
             article.setId(id); // the id from the original object should be null
             
-            saveApproval(article);
+            saveArticle(article);
 
             return new ResponseEntity<>(article,HttpStatus.OK);
         }
@@ -114,9 +114,9 @@ public class ArticleManager {
 
         try {
             id = new ObjectId(paramId);
-            tmpArticle = getApprovalById(id);
+            tmpArticle = getArticleById(id);
 
-            deleteApprovalById(tmpArticle);
+            deleteArticleById(tmpArticle);
             
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } 

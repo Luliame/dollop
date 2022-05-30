@@ -5,7 +5,9 @@ import java.util.List;
 import static com.example.dollop.utils.ListUtil.Average;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document("article")
 public class Article {
 
     //#region [ Attributes ]

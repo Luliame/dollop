@@ -2,12 +2,13 @@ package com.example.dollop.service;
 
 import java.util.List;
 
-import com.example.dollop.model.Article;
+import com.example.dollop.model.dto.ArticleDto;
 
 public interface ArticleService {
     
-    List<Article> findAll();
-    Article findByName(String name);
+    List<ArticleDto> findAll();
+    ArticleDto findByName(String name);
+    ArticleDto findById(String id);
 
-    void save(Article article);
+    void save(ArticleDto article);
 }

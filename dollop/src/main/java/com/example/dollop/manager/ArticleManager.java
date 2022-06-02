@@ -1,14 +1,11 @@
 package com.example.dollop.manager;
 
-import static com.example.dollop.gateway.ArticleGateway.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.dollop.model.Article;
+import com.example.dollop.model.dto.ArticleDto;
 import com.example.dollop.service.impl.ArticleServiceImpl;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,15 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticleManager {
 
     @Autowired
-    ArticleServiceImpl serv; 
-    // private ArticleServiceImpl serv = new ArticleServiceImpl(); // attention faut pas faire ça sinon pas d'injection !
+    ArticleServiceImpl serv;
 
     @GetMapping("")
     @ResponseBody
-    public ResponseEntity<List<Article>> getArticles(){
+    public ResponseEntity<List<ArticleDto>> getArticles(){
         try {
-            List<Article> articles = serv.findAll();
-            // List<Article> articles = getAllArticle();
+            List<ArticleDto> articles = serv.findAll();
             return new ResponseEntity<>(articles,HttpStatus.OK);
         } catch (Exception e) {
             //TODO: handle exception
@@ -46,17 +41,12 @@ public class ArticleManager {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<Article> getArticle(@PathVariable("id") String paramId){
-        ObjectId id;
-        Article article;
+    public ResponseEntity<ArticleDto> getArticle(@PathVariable("id") String paramId){
+        
+        ArticleDto article;
 
         try {
-            id = new ObjectId(paramId);
-            
-            article = getArticleById(id);
-
-            
-            // article = serv.findByName(paramId);
+            article = serv.findById(paramId);
 
             return new ResponseEntity<>(article,HttpStatus.OK);
         } 
@@ -72,13 +62,11 @@ public class ArticleManager {
 
     @PostMapping("")
     @ResponseBody
-    public ResponseEntity<Article> postArticle(@RequestBody Article article) {
+    public ResponseEntity<ArticleDto> postArticle(@RequestBody ArticleDto article) {
         try {
             // if (!IsValidNewApproval(article)) //TODO
             //     return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
-            
-            // computeApproval(article);
-            // saveArticle(article);
+
             serv.save(article);
             
             return new ResponseEntity<>(article,HttpStatus.CREATED);
@@ -92,22 +80,22 @@ public class ArticleManager {
     
     @PutMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<Article> putArticle(@RequestBody Article article, @PathVariable("id") String paramId) {
-        ObjectId id;
+    public ResponseEntity<ArticleDto> putArticle(@RequestBody ArticleDto article, @PathVariable("id") String paramId) {
+        // ObjectId id;
             
-        // if (!IsValidNewApproval(article))
+        // if (!IsValidNewApproval(article)) //TODO check valid article
         //     return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 
         try {
-            id = new ObjectId(paramId);
+            // id = new ObjectId(paramId);
 
-            if (!ExistArticle(id))
+            if (serv.findById(paramId) == null)
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 
-            article.setId(id); // the id from the original object should be null
+            article.setId(paramId); // the id from the original object should be null
             
-            saveArticle(article);
+            serv.save(article);
 
             return new ResponseEntity<>(article,HttpStatus.OK);
         }
@@ -122,15 +110,16 @@ public class ArticleManager {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Article> deleteArticle(@PathVariable("id") String paramId){
-        ObjectId id;
-        Article tmpArticle;
+    public ResponseEntity<ArticleDto> deleteArticle(@PathVariable("id") String paramId){
+        // ObjectId id;
+        ArticleDto tmpArticle;
 
         try {
-            id = new ObjectId(paramId);
-            tmpArticle = getArticleById(id);
+            //TODO delete
+            // id = new ObjectId(paramId);
+            // tmpArticle = getArticleById(id);
 
-            deleteArticleById(tmpArticle);
+            // deleteArticleById(tmpArticle);
             
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } 

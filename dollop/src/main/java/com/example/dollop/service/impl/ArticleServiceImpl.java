@@ -1,8 +1,9 @@
 package com.example.dollop.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.example.dollop.model.Article;
+import com.example.dollop.model.dto.ArticleDto;
 import com.example.dollop.repository.ArticleRepository;
 import com.example.dollop.service.ArticleService;
 
@@ -16,19 +17,23 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleRepository repo;
 
     @Override
-    public List<Article> findAll() {
-        // return null;
-        return repo.findAll();
+    public List<ArticleDto> findAll() {
+        return repo.findAll()
+            .stream().map(a -> new ArticleDto(a)).collect(Collectors.toList());
     }
 
     @Override
-    public void save(Article article) {
-        repo.save(article);
+    public void save(ArticleDto article) {
+        repo.save(article.toModel());
     }
 
     @Override
-    public Article findByName(String name) {
-        return repo.findArticleByName(name);
+    public ArticleDto findByName(String name) {
+        return new ArticleDto(repo.findArticleByName(name));
     }
-    
+
+    @Override
+    public ArticleDto findById(String id) {
+        return new ArticleDto(repo.findArticleById(id));
+    }
 }

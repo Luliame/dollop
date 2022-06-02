@@ -1,8 +1,9 @@
 package com.example.dollop.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.dollop.utils.ListUtil.Average;
+// import static com.example.dollop.utils.ListUtil.Average;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,7 +18,7 @@ public class Article {
     
     private float score; //TODO utile ou gérer par getter
 
-    private List<Comment> commentaries;
+    private List<Comment> commentaries = new ArrayList<>();
     //#endregion
 
     //#region [ Constructor ]
@@ -34,8 +35,17 @@ public class Article {
         this(name);
         this.text = text;
     }
-    //#endregion
     
+    public Article(ObjectId id, String name, String text, float score, List<Comment> commentaries) {
+        this.id = id;
+        this.name = name;
+        this.text = text;
+        this.score = score;
+        this.commentaries = commentaries;
+    }
+
+    //#endregion
+
     //#region [ getter / setter ]
     public String getName() {
         return name;

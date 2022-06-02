@@ -1,6 +1,5 @@
 package com.example.dollop;
 
-import com.example.dollop.gateway.ArticleGateway;
 import com.example.dollop.model.Article;
 import com.example.dollop.repository.ArticleRepository;
 
@@ -25,7 +24,6 @@ public class DollopApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		populate_test();
-		// ArticleGateway.saveArticle(new Article("bonjour", "ceci est un test"));
 	}
 
 	private void populate_test(){

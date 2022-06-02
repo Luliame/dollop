@@ -23,17 +23,17 @@ public class DollopApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		populate_test();
+		// ArticleGateway.saveArticle(new Article("bonjour", "ceci est un test"));
+	}
+
+	private void populate_test(){
 		articleRepo.deleteAll();
 
 		articleRepo.save(new Article("bonjour", "ceci est un test"));
-		
-		// ArticleGateway.saveArticle(new Article("bonjour", "ceci est un test"));
-		// test();
+		articleRepo.save(new Article("michel", "non"));
+		articleRepo.save(new Article("agrandissez votre penis", "ceci n'est pas une arnaque"));
+		articleRepo.save(new Article("Amber heard a perdu !", "elle n'a pas été heared"));
 	}
-
-	// public void test(){
-	// 	articleRepo.save(new Article("bonjour", "ceci est un test"));
-	// }
-
-	
 }

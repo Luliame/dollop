@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.dollop.model.Article;
+import com.example.dollop.service.impl.ArticleServiceImpl;
 
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,9 +25,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/articles")
 public class ArticleManager {
+
+    @Autowired
+    ArticleServiceImpl serv; 
+    // private ArticleServiceImpl serv = new ArticleServiceImpl(); // attention faut pas faire ça sinon pas d'injection !
+
+    @GetMapping("")
+    @ResponseBody
     public ResponseEntity<List<Article>> getArticles(){
         try {
-            List<Article> articles = getAllArticle();
+            List<Article> articles = serv.findAll();
+            // List<Article> articles = getAllArticle();
             return new ResponseEntity<>(articles,HttpStatus.OK);
         } catch (Exception e) {
             //TODO: handle exception
@@ -44,6 +54,9 @@ public class ArticleManager {
             id = new ObjectId(paramId);
             
             article = getArticleById(id);
+
+            
+            // article = serv.findByName(paramId);
 
             return new ResponseEntity<>(article,HttpStatus.OK);
         } 
@@ -65,7 +78,8 @@ public class ArticleManager {
             //     return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
             
             // computeApproval(article);
-            saveArticle(article);
+            // saveArticle(article);
+            serv.save(article);
             
             return new ResponseEntity<>(article,HttpStatus.CREATED);
         }

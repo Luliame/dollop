@@ -15,8 +15,7 @@ public class Article {
     
     private float score; //TODO utile ou gérer par getter
 
-    private List<Integer> marks;
-    private List<String> commentaries;
+    private List<Comment> commentaries;
     //#endregion
 
     //#region [ Constructor ]
@@ -50,11 +49,7 @@ public class Article {
         this.text = text;
     }
 
-    public List<Integer> getMarks() {
-        return marks;//TODO unmodifiable
-    }
-
-    public List<String> getCommentaries() {
+    public List<Comment> getCommentaries() {
         return commentaries;//TODO unmodifiable
     }
 
@@ -68,15 +63,8 @@ public class Article {
     //#endregion
 
     //#region [ Add to list ]
-    public void addCommentary(String comm){
+    public void addCommentary(Comment comm){
         commentaries.add(comm);
-    }
-
-    public void addMark(int mark){
-        marks.add(mark);
-        
-        // Calcul du score 
-        this.score = Average(marks);//TODO ici ou dans le getter ???
     }
     //#endregion
 }

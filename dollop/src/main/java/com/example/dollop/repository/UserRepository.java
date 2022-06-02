@@ -1,18 +1,22 @@
 package com.example.dollop.repository;
 
-import com.example.dollop.model.Article;
+import java.util.List;
+
+import com.example.dollop.model.User;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-public interface UserRepository extends MongoRepository<Article, ObjectId> {
-
+public interface UserRepository extends MongoRepository<User, ObjectId> {
+    
+    @Query("{id:'?0'}")
+    User findUserById(String id);
+    
     @Query("{name:'?0'}")
-    Article findCUserByName(String name);
+    User findUserByName(String name);
 
-    // @Query("{article:'?0'}")
-    // Article save(Article article);
-
+    List<User> findAll();
+    
     public long count();
 }

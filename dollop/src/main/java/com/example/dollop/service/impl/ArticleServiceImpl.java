@@ -7,6 +7,7 @@ import com.example.dollop.model.dto.ArticleDto;
 import com.example.dollop.repository.ArticleRepository;
 import com.example.dollop.service.ArticleService;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,16 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public ArticleDto findById(String id) {
+        return new ArticleDto(repo.findArticleById(id));
+    }
+
+    @Override
+    public void deleteById(String id) {
+        repo.deleteById(new ObjectId(id));
+    }
+
+    @Override
     public void save(ArticleDto article) {
         repo.save(article.toModel());
     }
@@ -30,10 +41,5 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleDto findByName(String name) {
         return new ArticleDto(repo.findArticleByName(name));
-    }
-
-    @Override
-    public ArticleDto findById(String id) {
-        return new ArticleDto(repo.findArticleById(id));
     }
 }

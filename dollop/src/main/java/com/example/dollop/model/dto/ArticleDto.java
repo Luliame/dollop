@@ -2,8 +2,10 @@ package com.example.dollop.model.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import static org.apache.http.util.TextUtils.isEmpty;
 
 import com.example.dollop.model.Article;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.bson.types.ObjectId;
 
@@ -71,5 +73,13 @@ public class ArticleDto extends DtoBase<Article> {
             this.commentaries
                 .stream().map(c -> c.toModel()).collect(Collectors.toList())
         );
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isValidNew() {
+        return id == null && 
+            !isEmpty(name) &&
+            !isEmpty(text);
     }
 }

@@ -1,15 +1,15 @@
 package com.example.dollop.model.dto;
 
-import com.example.dollop.model.Comment;
+import com.example.dollop.model.User;
 
-public class CommentDto extends DtoBase<Comment> {
+public class UserDto extends DtoBase<User> {
 
-    public CommentDto(Comment comment) {
-        //TODO CommentDto construct
+    public UserDto(User user) {
+        //TODO user construct 
     }
 
     @Override
-    public Comment toModel() {
+    public User toModel() {
         // TODO Auto-generated method stub
         return null;
     }

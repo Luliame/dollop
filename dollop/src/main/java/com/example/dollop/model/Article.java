@@ -5,7 +5,9 @@ import java.util.List;
 import static com.example.dollop.utils.ListUtil.Average;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document("article")
 public class Article {
 
     //#region [ Attributes ]
@@ -60,6 +62,11 @@ public class Article {
     public ObjectId getId() {
         return id;
     }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+    
     //#endregion
 
     //#region [ Add to list ]

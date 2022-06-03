@@ -6,44 +6,56 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("comment")
 public class Comment {
 
-    private ObjectId _id;
+    private ObjectId id;
 
-    public User user;
+    // public User user;
+    public ObjectId userId;
 
     public int note;
     
     public String contexte;
 
     public Comment() {
-        _id = new ObjectId();
+        id = new ObjectId();
     }
 
-    public Comment(User user, int note) {
+    public Comment(ObjectId userId, int note) {
         this();
-        this.user = user;
+        // this.user = user;
+        this.userId = userId;
         this.note = note;
     }
 
-    public Comment(User user, int note, String contexte) {
+    public Comment(ObjectId userId, int note, String contexte) {
         this();
-        this.user = user;
+        // this.user = user;
+        this.userId = userId;
         this.note = note;
         this.contexte = contexte;
     }
 
-    public Comment(ObjectId _id, User user, int note, String contexte) {
-        this._id = _id;
-        this.user = user;
+    public Comment(ObjectId id, ObjectId userId, int note, String contexte) {
+        this.id = id;
+        // this.user = user;
+        this.userId = userId;
         this.note = note;
         this.contexte = contexte;
     }
 
-    public User getUser() {
-        return user;
+    // public User getUser() {
+    //     return user;
+    // }
+
+    // public void setUser(User user) {
+    //     this.user = user;
+    // }
+
+    public ObjectId getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(ObjectId userId) {
+        this.userId = userId;
     }
 
     public int getNote() {
@@ -63,10 +75,10 @@ public class Comment {
     }
 
     public ObjectId getId() {
-        return _id;
+        return id;
     }
 
-    public void setId(ObjectId _id) {
-        this._id = _id;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 }

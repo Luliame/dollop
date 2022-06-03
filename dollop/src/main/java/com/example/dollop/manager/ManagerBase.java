@@ -9,12 +9,12 @@ import com.example.dollop.service.Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public abstract class ManagerBase<TDto, T extends DtoBase<TDto>> {
+public abstract class ManagerBase<TModel, TDto extends DtoBase<TModel>> {
 
-    protected ResponseEntity<List<T>> getAll(Service<T> serv){
+    protected ResponseEntity<List<TDto>> getAll(Service<TDto> serv){
         
         try {
-            List<T> articles = serv.findAll();
+            List<TDto> articles = serv.findAll();
             return new ResponseEntity<>(articles,HttpStatus.OK);
         } 
         catch (Exception e) {
@@ -24,8 +24,8 @@ public abstract class ManagerBase<TDto, T extends DtoBase<TDto>> {
         return new ResponseEntity<>(new ArrayList<>(),HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    protected ResponseEntity<T> getById(Service<T> serv, String paramId) {
-        T doc;
+    protected ResponseEntity<TDto> getById(Service<TDto> serv, String paramId) {
+        TDto doc;
 
         try {
             doc = serv.findById(paramId);
@@ -42,7 +42,7 @@ public abstract class ManagerBase<TDto, T extends DtoBase<TDto>> {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    protected ResponseEntity<T> post(Service<T> serv, T doc) {
+    protected ResponseEntity<TDto> post(Service<TDto> serv, TDto doc) {
 
         try {
             if (!doc.isValidNew()) 
@@ -59,7 +59,7 @@ public abstract class ManagerBase<TDto, T extends DtoBase<TDto>> {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    protected ResponseEntity<T> put(Service<T> serv, T doc, String paramId){
+    protected ResponseEntity<TDto> put(Service<TDto> serv, TDto doc, String paramId){
 
         if (!doc.isValidNew())
             return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
@@ -85,7 +85,7 @@ public abstract class ManagerBase<TDto, T extends DtoBase<TDto>> {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    protected ResponseEntity<T> deleteById(Service<T> serv, String paramId){
+    protected ResponseEntity<TDto> deleteById(Service<TDto> serv, String paramId){
 
         try {
             serv.deleteById(paramId);

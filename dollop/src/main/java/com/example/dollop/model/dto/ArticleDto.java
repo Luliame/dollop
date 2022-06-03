@@ -18,6 +18,10 @@ public class ArticleDto extends DtoBase<Article> {
 
     private List<CommentDto> commentaries;
 
+    
+    public ArticleDto() {
+    }
+
     public ArticleDto(Article article) {
         this.id = article.getId().toString();
         this.name = article.getName();
@@ -75,8 +79,8 @@ public class ArticleDto extends DtoBase<Article> {
         );
     }
 
-    @Override
     @JsonIgnore
+    @Override
     public boolean isValidNew() {
         return id == null && 
             !isEmpty(name) &&

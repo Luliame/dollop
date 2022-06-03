@@ -19,6 +19,10 @@ public class User {
         _id = new ObjectId();
     }
 
+    public User(String userName) {
+        this.userName = userName;
+    }
+
     public User(String userName, List<Article> favorites) {
         this();
         this.userName = userName;
@@ -31,7 +35,7 @@ public class User {
         this.favorites = favorites;
     }
 
-    public ObjectId get_id() {
+    public ObjectId getId() {
         return _id;
     }
 

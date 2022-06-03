@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Article {
 
     //#region [ Attributes ]
-    private ObjectId _id; //TODO verif type / implémentation
+    private ObjectId id; //TODO verif type / implémentation
     private String name;
     private String text;
     
@@ -23,7 +23,7 @@ public class Article {
 
     //#region [ Constructor ]
     public Article() {
-        _id = new ObjectId();
+        id = new ObjectId();
     }
 
     public Article(String name) {
@@ -37,7 +37,7 @@ public class Article {
     }
     
     public Article(ObjectId id, String name, String text, float score, List<Comment> commentaries) {
-        this._id = id;
+        this.id = id;
         this.name = name;
         this.text = text;
         this.score = score;
@@ -70,11 +70,11 @@ public class Article {
     }
 
     public ObjectId getId() {
-        return _id;
+        return id;
     }
 
     public void setId(ObjectId id) {
-        this._id = id;
+        this.id = id;
     }
     
     //#endregion

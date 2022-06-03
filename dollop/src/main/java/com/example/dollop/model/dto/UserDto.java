@@ -1,6 +1,7 @@
 package com.example.dollop.model.dto;
 
 import com.example.dollop.model.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDto extends DtoBase<User> {
 
@@ -14,6 +15,7 @@ public class UserDto extends DtoBase<User> {
         return null;
     }
 
+    @JsonIgnore
     @Override
     public boolean isValidNew() {
         // TODO Auto-generated method stub

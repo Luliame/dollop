@@ -14,44 +14,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.dollop.model.Comment;
-import com.example.dollop.model.dto.CommentDto;
-import com.example.dollop.service.impl.CommentServiceImpl;
+import com.example.dollop.model.User;
+import com.example.dollop.model.dto.UserDto;
+import com.example.dollop.service.impl.UserServiceImpl;
 
 @RestController
-@RequestMapping("/comments")
-public class CommentManager extends ManagerBase<Comment, CommentDto> {
+@RequestMapping("/users")
+public class UserManager extends ManagerBase<User, UserDto> {
 
     @Autowired
-    CommentServiceImpl serv;
+    UserServiceImpl serv;
 
     @GetMapping("")
     @ResponseBody
-    public ResponseEntity<List<CommentDto>> getArticles(){
+    public ResponseEntity<List<UserDto>> getArticles(){
         return getAll(serv);
     }
 
     @GetMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<CommentDto> getArticle(@PathVariable("id") String paramId){
+    public ResponseEntity<UserDto> getArticle(@PathVariable("id") String paramId){
         return getById(serv, paramId);
     }
 
     @PostMapping("")
     @ResponseBody
-    public ResponseEntity<CommentDto> postArticle(@RequestBody CommentDto comment) {
-        return post(serv, comment);
+    public ResponseEntity<UserDto> postArticle(@RequestBody UserDto user) {
+        return post(serv, user);
     }
     
     @PutMapping("/{id}")
     @ResponseBody
-    public ResponseEntity<CommentDto> putArticle(@RequestBody CommentDto comment, @PathVariable("id") String paramId) {
-        return put(serv, comment, paramId);
+    public ResponseEntity<UserDto> putArticle(@RequestBody UserDto user, @PathVariable("id") String paramId) {
+        return put(serv, user, paramId);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CommentDto> deleteArticle(@PathVariable("id") String paramId){
+    public ResponseEntity<UserDto> deleteArticle(@PathVariable("id") String paramId){
         return deleteById(serv, paramId);
     }
-
+    
 }

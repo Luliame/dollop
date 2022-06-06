@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import static org.apache.http.util.TextUtils.isEmpty;
 
 import com.example.dollop.model.Article;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.bson.types.ObjectId;
 
@@ -79,7 +78,6 @@ public class ArticleDto extends DtoBase<Article> {
         );
     }
 
-    @JsonIgnore
     @Override
     public boolean isValidNew() {
         return id == null && 

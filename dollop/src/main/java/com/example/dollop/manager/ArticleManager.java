@@ -53,4 +53,5 @@ public class ArticleManager extends ManagerBase<Article, ArticleDto> {
     public ResponseEntity<ArticleDto> deleteArticle(@PathVariable("id") String paramId){
         return deleteById(serv, paramId);
     }
+    
 }

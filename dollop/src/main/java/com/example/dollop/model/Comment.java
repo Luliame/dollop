@@ -8,12 +8,11 @@ public class Comment {
 
     private ObjectId id;
 
-    // public User user;
-    public ObjectId userId;
+    private ObjectId userId;
 
-    public int note;
+    private int note;
     
-    public String contexte;
+    private String contente;
 
     public Comment() {
         id = new ObjectId();
@@ -31,7 +30,7 @@ public class Comment {
         // this.user = user;
         this.userId = userId;
         this.note = note;
-        this.contexte = contexte;
+        this.contente = contexte;
     }
 
     public Comment(ObjectId id, ObjectId userId, int note, String contexte) {
@@ -39,7 +38,7 @@ public class Comment {
         // this.user = user;
         this.userId = userId;
         this.note = note;
-        this.contexte = contexte;
+        this.contente = contexte;
     }
 
     // public User getUser() {
@@ -66,12 +65,12 @@ public class Comment {
         this.note = note;
     }
 
-    public String getContexte() {
-        return contexte;
+    public String getContente() {
+        return contente;
     }
 
-    public void setContexte(String contexte) {
-        this.contexte = contexte;
+    public void setContente(String contexte) {
+        this.contente = contexte;
     }
 
     public ObjectId getId() {

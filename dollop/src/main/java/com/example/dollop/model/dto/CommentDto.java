@@ -4,23 +4,24 @@ import org.bson.types.ObjectId;
 
 import com.example.dollop.model.Comment;
 import com.example.dollop.service.impl.UserServiceImpl;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import static org.apache.http.util.TextUtils.isEmpty;
 
 public class CommentDto extends DtoBase<Comment> {
 
     private String id;
 
-    public UserDto user;
+    private UserDto user;
 
-    public int note;
+    private int note;
     
-    public String contexte;
+    private String contente;
 
     public CommentDto(Comment comment) {
         this.id = comment.getId().toString();
-        this.user = UserServiceImpl.test(comment.getUserId().toString()); //TODO a tester
+        this.user = UserServiceImpl
+            .findByIdStatic(comment.getUserId().toString());
         this.note = comment.getNote();
-        this.contexte = comment.getContexte();
+        this.contente = comment.getContente();
     }
 
     public CommentDto() {
@@ -51,12 +52,12 @@ public class CommentDto extends DtoBase<Comment> {
         this.note = note;
     }
 
-    public String getContexte() {
-        return contexte;
+    public String getContente() {
+        return contente;
     }
 
-    public void setContexte(String contexte) {
-        this.contexte = contexte;
+    public void setContente(String contexte) {
+        this.contente = contexte;
     }
 
     @Override
@@ -65,15 +66,16 @@ public class CommentDto extends DtoBase<Comment> {
             new ObjectId(id),
             new ObjectId(user.getId()),
             note,
-            contexte
+            contente
         );
     }
 
-    @JsonIgnore
     @Override
     public boolean isValidNew() {
-        // TODO Auto-generated method stub
-        return false;
+        return isEmpty(id) &&
+            user != null &&
+            note >= 0 && 
+            note <= 10;
     }
     
 }

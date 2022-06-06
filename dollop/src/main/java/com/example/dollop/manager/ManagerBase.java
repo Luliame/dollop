@@ -19,6 +19,7 @@ public abstract class ManagerBase<TModel, TDto extends DtoBase<TModel>> {
         } 
         catch (Exception e) {
             //TODO: handle exception
+            System.out.println(String.format("ERROR in %s: %s", Thread.currentThread().getStackTrace()[1].getMethodName(), e));
         }
 
         return new ResponseEntity<>(new ArrayList<>(),HttpStatus.INTERNAL_SERVER_ERROR);

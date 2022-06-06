@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static UserRepository repoStatic;
     @Autowired
-    private UserRepository repoAuto;
-    private static UserRepository repo;
+    private UserRepository repo;
 
     @PostConstruct
     public void init() {
-        UserServiceImpl.repo = repoAuto;
+        UserServiceImpl.repoStatic = repo;
     }
 
     @Override
@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService {
         return new UserDto(repo.findUserById(id));
     }
 
-    public static UserDto test(String id) {//TODO a tester !
-        return new UserDto(repo.findUserById(id));
+    public static UserDto findByIdStatic(String id) {
+        return new UserDto(repoStatic.findUserById(id));
     }
 
     @Override

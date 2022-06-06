@@ -1,5 +1,6 @@
 package com.example.dollop.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -8,15 +9,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("user")
 public class User {
 
-    public ObjectId _id;
+    private ObjectId id;
 
-    public String userName;
+    private String userName;
     
-    public List<Article> favorites;
+    private List<Article> favorites = new ArrayList<>();
 
     
     public User() {
-        _id = new ObjectId();
+        id = new ObjectId();
     }
 
     public User(String userName) {
@@ -30,17 +31,17 @@ public class User {
     }
 
     public User(ObjectId _id, String userName, List<Article> favorites) {
-        this._id = _id;
+        this.id = _id;
         this.userName = userName;
         this.favorites = favorites;
     }
 
     public ObjectId getId() {
-        return _id;
+        return id;
     }
 
-    public void set_id(ObjectId _id) {
-        this._id = _id;
+    public void setId(ObjectId _id) {
+        this.id = _id;
     }
 
     public String getUserName() {
@@ -58,6 +59,4 @@ public class User {
     public void setFavorites(List<Article> favorites) {
         this.favorites = favorites;
     }
-
-
 }

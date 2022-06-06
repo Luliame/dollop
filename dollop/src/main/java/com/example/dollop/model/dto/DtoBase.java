@@ -1,5 +1,7 @@
 package com.example.dollop.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public abstract class DtoBase<T> {
     
     protected String id;
@@ -12,6 +14,7 @@ public abstract class DtoBase<T> {
         this.id = id;
     }
 
+    @JsonIgnore
     public abstract boolean isValidNew();
 
     public abstract T toModel();

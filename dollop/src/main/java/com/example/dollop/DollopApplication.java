@@ -36,6 +36,8 @@ public class DollopApplication implements CommandLineRunner {
 
 	private void populate_test(){
 		articleRepo.deleteAll();
+		userRepo.deleteAll();
+		commentRepo.deleteAll();
 
 		articleRepo.save(new Article("bonjour", "ceci est un test"));
 		articleRepo.save(new Article("michel", "non"));

@@ -1,27 +1,48 @@
-package com.example.dollop;
+// package com.example.dollop;
 
-import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.Test;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+// import org.springframework.boot.test.context.SpringBootTest;
+// import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+// import org.springframework.boot.test.mock.mockito.MockBean;
+// import org.springframework.boot.test.web.client.TestRestTemplate;
+// import org.springframework.boot.web.server.LocalServerPort;
+// import org.springframework.test.context.ContextConfiguration;
+// import org.springframework.test.web.servlet.MockMvc;
 
-import static org.assertj.core.api.Assertions.assertThat;
+// import com.example.dollop.manager.ArticleManager;
+// import com.example.dollop.model.dto.ArticleDto;
+// import com.example.dollop.service.impl.ArticleServiceImpl;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class CheckHTTPResponse {
+// import static org.assertj.core.api.Assertions.assertThat;
+// import static org.mockito.Mockito.when;
 
-	@LocalServerPort
-	private int port;
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+// import static org.hamcrest.Matchers.containsString;
+// import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+// import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+// import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+// import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-	//@Test
-	//public void greetingShouldReturnDefaultMessage() throws Exception {
-	//	assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
-	//			String.class)).contains("Hello, World");
-	//}
-}
+
+
+// @WebMvcTest(ArticleManager.class)
+// @ContextConfiguration(classes=DollopApplication.class)
+// @SpringBootTest
+// public class CheckHTTPResponse {
+
+// 	@Autowired
+// 	private MockMvc mockMvc;
+
+// 	@MockBean
+// 	private ArticleServiceImpl service;
+
+// 	@Test
+// 	public void getArticleByIdTest() throws Exception {
+// 		var i = new ArticleDto("michel", "non", 7);
+// 		when(service.findByName("michel")).thenReturn(i);
+// 	}
+// 	//.string(containsString("Hello, Mock"))
+// }

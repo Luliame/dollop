@@ -2,21 +2,22 @@ package com.example.dollop.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-// import static com.example.dollop.utils.ListUtil.Average;
+import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import static com.example.dollop.utils.ListUtil.Average;
 
 @Document("article")
 public class Article {
 
     //#region [ Attributes ]
-    private ObjectId id; //TODO verif type / implémentation
+    private ObjectId id;
     private String name;
     private String text;
     
-    private float score; //TODO utile ou gérer par getter
+    private float score = 0;
 
     private List<Comment> commentaries = new ArrayList<>();
     //#endregion
@@ -36,6 +37,12 @@ public class Article {
         this.text = text;
     }
     
+    public Article(String name, String text, float score) {
+        this.name = name;
+        this.text = text;
+        this.score = score;
+    }
+
     public Article(ObjectId id, String name, String text, float score, List<Comment> commentaries) {
         this.id = id;
         this.name = name;
@@ -62,7 +69,7 @@ public class Article {
     }
 
     public List<Comment> getCommentaries() {
-        return commentaries;//TODO unmodifiable
+        return commentaries;
     }
 
     public float getScore() {
@@ -82,6 +89,9 @@ public class Article {
     //#region [ Add to list ]
     public void addCommentary(Comment comm){
         commentaries.add(comm);
+        score = Average(commentaries
+            .stream().map(c -> c.getNote()).collect(Collectors.toList())
+        );
     }
     //#endregion
 }

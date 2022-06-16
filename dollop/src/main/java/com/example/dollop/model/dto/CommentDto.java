@@ -8,14 +8,15 @@ import static org.apache.http.util.TextUtils.isEmpty;
 
 public class CommentDto extends DtoBase<Comment> {
 
-    private String id;
-
+    //#region [ Attributes ]
     private UserDto user;
 
     private int note;
     
     private String contente;
+    //#endregion
 
+    //#region [ Constructor ]
     public CommentDto(Comment comment) {
         this.id = comment.getId().toString();
         this.user = UserServiceImpl
@@ -24,18 +25,19 @@ public class CommentDto extends DtoBase<Comment> {
         this.contente = comment.getContente();
     }
 
-    public CommentDto() {
+    public CommentDto(UserDto user, int note) {
+        super();
+        this.user = user;
+        this.note = note;
     }
 
-
-    public String getId() {
-        return id;
+    public CommentDto(UserDto user, int note, String contente) {
+        this(user, note);
+        this.contente = contente;
     }
+    //#endregion
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    //#region [ getter / setter ]
     public UserDto getUser() {
         return user;
     }
@@ -59,7 +61,9 @@ public class CommentDto extends DtoBase<Comment> {
     public void setContente(String contexte) {
         this.contente = contexte;
     }
+    //#endregion
 
+    //#region [ override ]
     @Override
     public Comment toModel() {
         return new Comment(
@@ -77,5 +81,5 @@ public class CommentDto extends DtoBase<Comment> {
             note >= 0 && 
             note <= 10;
     }
-    
+    //#endregion
 }

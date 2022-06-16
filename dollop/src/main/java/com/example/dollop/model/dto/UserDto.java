@@ -10,16 +10,14 @@ import com.example.dollop.model.User;
 import static org.apache.http.util.TextUtils.isEmpty;
 
 public class UserDto extends DtoBase<User> {
-
-    private String id;
-
+    
+    //#region [ Attributes ]
     private String userName;
     
     private List<ArticleDto> favorites;
+    //#endregion
 
-    public UserDto() {
-    }
-
+    //#region [ Constructor ]
     public UserDto(User user) {
         this.id = user.getId().toString();
         this.userName = user.getUserName();
@@ -28,14 +26,13 @@ public class UserDto extends DtoBase<User> {
             .collect(Collectors.toList());
     }
 
-    public String getId() {
-        return id;
+    public UserDto(String userName) {
+        super();
+        this.userName = userName;
     }
+    //#endregion
 
-    public void setId(String _id) {
-        this.id = _id;
-    }
-
+    //#region [ getter / setter ]
     public String getUserName() {
         return userName;
     }
@@ -51,7 +48,15 @@ public class UserDto extends DtoBase<User> {
     public void setFavorites(List<ArticleDto> favorites) {
         this.favorites = favorites;
     }
+    //#endregion
 
+    //#region [ Add to list ]
+    public void addFavorite(ArticleDto article) {
+        favorites.add(article);
+    }
+    //#endregion
+
+    //#region [ override ]
     @Override
     public User toModel() {
         return new User(
@@ -68,5 +73,5 @@ public class UserDto extends DtoBase<User> {
         return isEmpty(id) && 
             !isEmpty(userName);
     }
-    
+    //#endregion
 }

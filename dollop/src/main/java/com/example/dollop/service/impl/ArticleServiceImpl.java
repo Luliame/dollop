@@ -16,6 +16,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private ArticleRepository repo;
+    @Autowired
+    private CommentServiceImpl commServ;
 
     @Override
     public List<ArticleDto> findAll() {
@@ -30,6 +32,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void deleteById(String id) {
+        ArticleDto a = findById(id);
+        a.getCommentaries().forEach(c -> commServ.deleteById(c.getId()));
         repo.deleteById(new ObjectId(id));
     }
 

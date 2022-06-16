@@ -48,7 +48,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(UserDto user) {
         repo.save(user.toModel());
-        
     }
 
     @Override

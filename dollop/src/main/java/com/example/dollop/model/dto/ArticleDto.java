@@ -1,5 +1,6 @@
 package com.example.dollop.model.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import static org.apache.http.util.TextUtils.isEmpty;
@@ -9,18 +10,17 @@ import com.example.dollop.model.Article;
 import org.bson.types.ObjectId;
 
 public class ArticleDto extends DtoBase<Article> {
-    
+
+    //#region [ Attributes ]
     private String name;
     private String text;
     
     private float score;
 
-    private List<CommentDto> commentaries;
+    private List<CommentDto> commentaries = new ArrayList<>();
+    //#endregion
 
-    
-    public ArticleDto() {
-    }
-
+    //#region [ Constructor ]
     public ArticleDto(Article article) {
         this.id = article.getId().toString();
         this.name = article.getName();
@@ -30,6 +30,20 @@ public class ArticleDto extends DtoBase<Article> {
             .stream().map(c -> new CommentDto(c)).collect(Collectors.toList());
     }
 
+    public ArticleDto(String name, String text, float score) {
+        super();
+        this.name = name;
+        this.text = text;
+        this.score = score;
+    }
+
+    public ArticleDto(String name, String text, float score, List<CommentDto> commentaries) {
+        this(name, text, score);
+        this.commentaries = commentaries;
+    }
+    //#endregion
+
+    //#region [ getter / setter ]
     public String getName() {
         return name;
     }
@@ -65,7 +79,9 @@ public class ArticleDto extends DtoBase<Article> {
     public void addCommentary(CommentDto comment) {
         commentaries.add(comment);
     }
+    //#endregion
 
+    //#region [ override ]
     @Override
     public Article toModel() {
         return new Article(
@@ -84,4 +100,5 @@ public class ArticleDto extends DtoBase<Article> {
             !isEmpty(name) &&
             !isEmpty(text);
     }
+    //#endregion
 }

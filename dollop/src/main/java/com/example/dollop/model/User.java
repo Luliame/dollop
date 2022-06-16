@@ -9,13 +9,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("user")
 public class User {
 
+    //#region [ Attributes ]
     private ObjectId id;
-
     private String userName;
-    
     private List<Article> favorites = new ArrayList<>();
+    //#endregion
 
-    
+    //#region [ Constructor ]
     public User() {
         id = new ObjectId();
     }
@@ -35,7 +35,9 @@ public class User {
         this.userName = userName;
         this.favorites = favorites;
     }
+    //#endregion
 
+    //#region [ getter / setter ]
     public ObjectId getId() {
         return id;
     }
@@ -59,4 +61,11 @@ public class User {
     public void setFavorites(List<Article> favorites) {
         this.favorites = favorites;
     }
+    //#endregion
+
+    //#region [ Add to list ]
+    public void addFavorite(Article article) {
+        favorites.add(article);
+    }
+    //#endregion
 }

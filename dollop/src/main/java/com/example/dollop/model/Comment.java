@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("comment")
 public class Comment {
 
+    //#region [ Attributes ]
     private ObjectId id;
 
     private ObjectId userId;
@@ -13,21 +14,21 @@ public class Comment {
     private int note;
     
     private String contente;
+    //#endregion
 
+    //#region [ Constructor ]
     public Comment() {
         id = new ObjectId();
     }
 
     public Comment(ObjectId userId, int note) {
         this();
-        // this.user = user;
         this.userId = userId;
         this.note = note;
     }
 
     public Comment(ObjectId userId, int note, String contexte) {
         this();
-        // this.user = user;
         this.userId = userId;
         this.note = note;
         this.contente = contexte;
@@ -35,20 +36,13 @@ public class Comment {
 
     public Comment(ObjectId id, ObjectId userId, int note, String contexte) {
         this.id = id;
-        // this.user = user;
         this.userId = userId;
         this.note = note;
         this.contente = contexte;
     }
+    //#endregion
 
-    // public User getUser() {
-    //     return user;
-    // }
-
-    // public void setUser(User user) {
-    //     this.user = user;
-    // }
-
+    //#region [ getter / setter ]
     public ObjectId getUserId() {
         return userId;
     }
@@ -80,4 +74,5 @@ public class Comment {
     public void setId(ObjectId id) {
         this.id = id;
     }
+    //#endregion
 }

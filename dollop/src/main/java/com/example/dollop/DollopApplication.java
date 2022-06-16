@@ -19,15 +19,12 @@ public class DollopApplication implements CommandLineRunner {
 
     @Autowired
     private ArticleRepository articleRepo;
-    @Autowired
+    
+	@Autowired
     private CommentRepository commentRepo;
+
     @Autowired
     private UserRepository userRepo;
-
-    // @Autowired
-    // ArticleServiceImpl ArticleServ;
-    // @Autowired
-    // UserServiceImpl UserServ;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DollopApplication.class, args);
@@ -63,7 +60,7 @@ public class DollopApplication implements CommandLineRunner {
 
 		Comment c1 = new Comment(gaby.getId(), 10);
 		Comment c2 = new Comment(thomas.getId(), 3, "moi j'aime pas");
-		Comment c3 = new Comment(thomas.getId(), 10, "moi j'aime bien");
+		Comment c3 = new Comment(thomas.getId(), 9, "moi j'aime bien");
 
 		commentRepo.save(c1);
 		commentRepo.save(c2);

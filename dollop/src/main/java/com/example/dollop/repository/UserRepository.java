@@ -2,11 +2,11 @@ package com.example.dollop.repository;
 
 import java.util.List;
 
-import com.example.dollop.model.User;
-
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+
+import com.example.dollop.model.User;
 
 public interface UserRepository extends MongoRepository<User, ObjectId> {
     

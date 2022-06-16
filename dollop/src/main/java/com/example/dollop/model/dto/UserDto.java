@@ -1,13 +1,13 @@
 package com.example.dollop.model.dto;
 
+import static org.apache.http.util.TextUtils.isEmpty;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 
 import com.example.dollop.model.User;
-
-import static org.apache.http.util.TextUtils.isEmpty;
 
 public class UserDto extends DtoBase<User> {
     

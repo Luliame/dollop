@@ -3,11 +3,11 @@ package com.example.dollop.manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.dollop.model.dto.DtoBase;
-import com.example.dollop.service.Service;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import com.example.dollop.model.dto.DtoBase;
+import com.example.dollop.service.Service;
 
 public abstract class ManagerBase<TModel, TDto extends DtoBase<TModel>> {
 

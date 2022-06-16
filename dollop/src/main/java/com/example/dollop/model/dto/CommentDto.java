@@ -1,10 +1,11 @@
 package com.example.dollop.model.dto;
 
+import static org.apache.http.util.TextUtils.isEmpty;
+
 import org.bson.types.ObjectId;
 
 import com.example.dollop.model.Comment;
 import com.example.dollop.service.impl.UserServiceImpl;
-import static org.apache.http.util.TextUtils.isEmpty;
 
 public class CommentDto extends DtoBase<Comment> {
 

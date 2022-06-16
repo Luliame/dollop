@@ -1,13 +1,13 @@
 package com.example.dollop.model;
 
+import static com.example.dollop.utils.ListUtil.Average;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import static com.example.dollop.utils.ListUtil.Average;
 
 @Document("article")
 public class Article {

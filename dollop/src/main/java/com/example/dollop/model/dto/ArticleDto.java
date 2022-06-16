@@ -1,13 +1,14 @@
 package com.example.dollop.model.dto;
 
+import static org.apache.http.util.TextUtils.isEmpty;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import static org.apache.http.util.TextUtils.isEmpty;
-
-import com.example.dollop.model.Article;
 
 import org.bson.types.ObjectId;
+
+import com.example.dollop.model.Article;
 
 public class ArticleDto extends DtoBase<Article> {
 

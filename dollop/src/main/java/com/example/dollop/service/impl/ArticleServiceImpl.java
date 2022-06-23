@@ -18,6 +18,8 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleRepository repo;
     @Autowired
     private CommentServiceImpl commServ;
+    @Autowired
+    private UserServiceImpl userServ;
 
     /**
      * méthode permettant le listing des articles 
@@ -58,6 +60,12 @@ public class ArticleServiceImpl implements ArticleService {
     public void deleteById(String id) {
         ArticleDto a = findById(id);
         a.getCommentaries().forEach(c -> commServ.deleteById(c.getId()));
+
+        // try{
+        //     userServ.findAll()
+        //         .forEach(c -> c.setFavorites(c.getFavorites().stream().map(ar -> ar.getId() == id ? null : ar).collect(Collectors.toList())));
+        // } catch(Exception e){}
+
         repo.deleteById(new ObjectId(id));
     }
 

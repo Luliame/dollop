@@ -73,5 +73,8 @@ public class DollopApplication implements CommandLineRunner {
 		articleRepo.save(a1);
 		articleRepo.save(a2);
 		articleRepo.save(a3);
+
+		// gaby.addFavorite(a1);
+		// userRepo.save(gaby);
 	}
 }

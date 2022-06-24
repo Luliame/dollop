@@ -2,6 +2,9 @@
 
 [sujet](http://clientserveur.milka.ovh/)
 
+### Groupe composé de [Maxence Desbouys](https://github.com/MaxenceDesbouys) et [Guillaume Valentin](https://github.com/Luliame) 
+
+
 Notre web service s'articule selon une architecture REST vous trouverez :
 
 - la liste des users au chemin suivant : /users
